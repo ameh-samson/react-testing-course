@@ -1,6 +1,6 @@
 import { render, screen, logRoles } from "@testing-library/react";
 import Sandbox from "./Sandbox";
-import userEvent from "@testing-library/user-event";
+import userEvent, { UserEvent } from "@testing-library/user-event";
 
 const getFormElements = () => {
   const elements = {
@@ -14,10 +14,16 @@ const getFormElements = () => {
 };
 
 describe("05-form-testing", () => {
+  let user: UserEvent;
+  beforeEach(() => {
+    user = userEvent.setup();
+    render(<Sandbox />);
+  });
+
   it("input should be initially empty", () => {
-    const { container } = render(<Sandbox />);
-    screen.debug();
-    logRoles(container);
+    // const { container } = render(<Sandbox />);
+    // screen.debug();
+    // logRoles(container);
 
     const { emailInput, passwordInput, confirmPasswordInput } =
       getFormElements();
@@ -30,9 +36,6 @@ describe("05-form-testing", () => {
   });
 
   it("should be able to type in the input", async () => {
-    const user = userEvent.setup();
-    render(<Sandbox />);
-
     const { emailInput, passwordInput, confirmPasswordInput } =
       getFormElements();
 
