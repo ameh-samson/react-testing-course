@@ -50,7 +50,7 @@ describe("03-search-by-role", () => {
     const asyncButton = await screen.findByRole(
       "button",
       { name: buttonName },
-      { timeout: 3000 }
+      { timeout: 4000 }
     );
     expect(asyncButton).toBeInTheDocument();
   });

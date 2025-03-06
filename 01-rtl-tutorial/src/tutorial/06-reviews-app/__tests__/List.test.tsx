@@ -11,6 +11,7 @@ describe("List Component", () => {
   it("should render heading", () => {
     render(<List reviews={[]} />);
 
+
     expect(
       screen.getByRole("heading", { level: 2, name: /reviews/i })
     ).toBeInTheDocument();
