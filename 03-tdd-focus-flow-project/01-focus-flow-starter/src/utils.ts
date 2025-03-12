@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-export type ItemCategory = 'urgent' | 'important' | 'normal' | 'low';
+export type ItemCategory = "urgent" | "normal" | "low";
 
 export type Item = {
   id: string;
@@ -9,18 +9,16 @@ export type Item = {
   category: ItemCategory;
 };
 
-export type ItemWithoutId = Omit<Item, 'id'>;
+export type ItemWithoutID = Omit<Item, "id">;
 
 export const useFlowManager = () => {
   const [items, setItems] = useState<Item[]>([]);
 
-  const handleAddItem = (newItem: ItemWithoutId) => {
+  const handleAddItem = (newItem: ItemWithoutID) => {
     setItems([...items, { ...newItem, id: Date.now().toString() }]);
   };
-
-  const handleDeleteItem = (id: string) => {
+  const handleDelete = (id: string) => {
     setItems(items.filter((item) => item.id !== id));
   };
-
-  return { items, handleAddItem, handleDeleteItem };
+  return { items, handleAddItem, handleDelete };
 };
